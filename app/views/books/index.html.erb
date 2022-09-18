@@ -1,3 +1,8 @@
 <%# /books...みんなの投稿一覧(Booksを選ぶ) %>
 <h2>User info</h2>
 <p>みんなの投稿一覧</p>
+
+<% @books.each do |book| %>
+<p>Title：<%= book_title %></p>
+
+<% end %>

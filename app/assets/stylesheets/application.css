@@ -11,5 +11,25 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_tree .
+ *bootstrap/dist/css/bootstrap.min.css
  *= require_self
  */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  width: 100%;
+}
+
+.navbar-toggler {
+  padding: 0.25em 0.75em;
+  font-size: 1.25rem;
+  line-height: 1;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+}
