@@ -1,7 +1,14 @@
 <%# books/id...投稿詳細ページ(投稿後のページorタイトル選択) %>
+<% if flash[:notice] %>
+  <p id="notice">
+    <%= flash[:notice] %>
+  </p>
+<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col-md-3">
+
       <h2>User info</h2>
       <%= image_tag @book.user.get_profile_image(100,100) %>
       <table class="table">
@@ -19,7 +26,9 @@
       </table>
 
       <div class="row">
-        <a class="btn btn-outline-secondary btn-block edit_user_id" href="/users/#{id}/edit"><i class="fas fa-user-cog"></i></a>
+        <%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block edit_user_id" do %>
+         <i class="fas fa-user-cog"></i>
+        <% end %>
       </div>
 
       <%#投稿フォーム start%>
@@ -45,7 +54,9 @@
         <table class="table">
           <tr>
             <td>
-              <a href="/users/:id"><%= image_tag @book.user.get_profile_image(100,100) %><br><%= @book.user.name %></a>
+              <%= link_to user_path(@book.user) do %>
+                <%= image_tag @book.user.get_profile_image(100,100) %><br><%= @book.user.name %>
+              <% end %>
             </td>
             <td>
               <%= link_to @book.title, book_path(@book.id) %>
@@ -55,15 +66,15 @@
             </td>
             <td>
               <% if @book.user == current_user %>
-                <%= link_to "Edit", edit_book_path(@book) %>
+
+                <%= link_to "Edit", edit_book_path(@book), class: "btn btn-success" %>
+
               <% end %>
-              <%#<a class="btn btn-sm btn-success edit_book_id" href="/books/:id/edit">Edit</a>%>
             </td>
             <td>
               <% if @book.user == current_user %>
-                <%= link_to "Destroy", book_path, method: :delete,"data-confirm" => "本当に消しますか？" %>
+                <%= link_to "Destroy", book_path, method: :delete,"data-confirm" => "本当に消しますか？", class:"btn btn-sm btn-danger destroy_book_id" %>
               <% end %>
-                <%#<a data-confirm="本当に消しますか？" class="btn btn-sm btn-danger destroy_book_id" rel="nofollow" data-method="delete" href="/books/:id">Destroy</a>%>
             </td>
           </tr>
         </table>

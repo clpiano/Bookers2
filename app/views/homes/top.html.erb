@@ -1,9 +1,14 @@
 <main>
-  <p id="notice"></p>
+ <% if flash[:notice] %>
+   <p id="notice">
+     <%= flash[:notice] %>
+   </p>
+ <% end %>
+
   <div class="container">
     <div class="row">
       <div class="mx-auto col-sm-10 col-lg-8 col-xl-6">
-        <h1>welcome to<i class="fas fa-book"></i><strong>Bookers</strong>!!
+        <h1>welcome to <i class="fas fa-book"></i><strong>Bookers</strong>!!
         </h1>
         <p>
           In
@@ -14,10 +19,16 @@
         <p>about various books!</p>
 
         <div class="row">
-          <a class="btn btn-info btn-sm btn-block mb-3 sign_in" href="/users/sign_in">Log in</a>
+          <%= link_to new_user_session_path, class:"btn btn-info btn-sm btn-block mb-3 sign_in" do %>
+            Log in
+          <% end %>
+          <%#<a class="btn btn-info btn-sm btn-block mb-3 sign_in" href="/users/sign_in">Log in</a>%>
         </div>
         <div class="row">
-          <a class="btn btn-success btn-sm btn-block sign_up" href="/users/sign_up">Sign up</a>
+          <%= link_to new_user_registration_path, class:"btn btn-success btn-sm btn-block sign_up" do %>
+            Sign up
+          <% end %>
+          <%#<a class="btn btn-success btn-sm btn-block sign_up" href="/users/sign_up">Sign up</a>%>
         </div>
 
       </div>

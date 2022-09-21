@@ -2,12 +2,21 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
+
+      <% if @book.errors.any? %>
+        <h3><%= @book.errors.count %> error prohibited this obj from being saved:</h3>
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+      <% end %>
+
       <h2>User info</h2>
       <%= image_tag current_user.get_profile_image(100,100) %>
 
       <table class="table">
         <tbody>
-          <tr></tr>
           <tr>
             <th>name</th>
             <th><%= current_user.name %></th>
@@ -20,7 +29,9 @@
       </table>
 
       <div class="row">
-        <a class="btn btn-outline-secondary btn-block edit_user_id" href="/users/:id/edit"><i class="fas fa-user-cog"></i></a>
+        <%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block edit_user_id" do %>
+         <i class="fas fa-user-cog"></i>
+        <% end %>
       </div>
 
 <%#投稿フォーム start%>
